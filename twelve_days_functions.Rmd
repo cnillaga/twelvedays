@@ -169,7 +169,7 @@ to create numbered days and then use those in your `pmap_chr()`!
 
 ```{r}
 xmas <- xmas %>%
-  mutate(day.num = as.character(as.english(Day)), 
+  mutate(day.num = as.character(english(Day)), 
     Full.Phrase = pmap_chr(list(num = Day, 
                                 num_word = day.num, 
                                 item = Gift.Item, 
@@ -201,7 +201,7 @@ Write a function called `sing_line` that takes as input:
 # Arguments -- phrase_col -- The variable name for the column in the dataset that contains the gift phrases
 # Return -- A string singing the line of the song with all gifts for the given day.
 
-sing_day <- function(dataset, line, phrase_col){
+sing_line <- function(dataset, line, phrase_col){
   
   # Step 1: Setup the intro line
   
@@ -212,7 +212,8 @@ sing_day <- function(dataset, line, phrase_col){
   # Step 2: Sing the gift phrases
 
     phrases <- dataset %>% 
-      pull({{phrase_col}})
+      pull({{phrase_col}}) %>%
+      map_chr(1:line, ~ "{Full.Phrase}")
 
   ????
     
@@ -231,7 +232,7 @@ For example,
 
 ```{r}
 sing_line(xmas, 
-          num = 2, 
+          line = 2, 
           phrase_col = Full.Phrase)
 
 ```
