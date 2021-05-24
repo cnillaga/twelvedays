@@ -1,5 +1,6 @@
 ---
 title: "Lab: The 12 Days of Christmas"
+author: Cesar Nillaga Stepahanie Calloway Hannah Clarke
 output:
   prettydoc::html_pretty:
     theme: tactile
